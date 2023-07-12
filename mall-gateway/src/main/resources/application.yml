@@ -9,6 +9,21 @@ spring:
           uri: https://google.com
           predicates:
             - Query=url,google
+        - id: product_route
+          uri: lb://mall-product
+          predicates:
+            - Path=/api/mallproduct/**
+          filters:
+            #因為mall-product的路徑前綴設為mallproduct，所以需這樣寫，如果為product可改為下:
+            #- RewritePath=/api/(?<segment>/?.*),/$\{segment
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+        - id: admin_route
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/renren-fast/$\{segment}
+
   application:
     name: mall-gateway
 

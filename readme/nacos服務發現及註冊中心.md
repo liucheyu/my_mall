@@ -79,5 +79,18 @@ spring.cloud.nacos.config.ext-config[0].group=dev
 spring.cloud.nacos.config.ext-config[0].refresh=true
 ```
 
-
 DEFAULT_GROUP為public
+
+nacos單機時使用內嵌資料庫，可改為自行配置mysql，方便資料匯出或匯入(匯出sql後，放到git做管理)
+- nacos/conf/application.preperties加入
+```properties
+spring.datasource.platform=mysql
+
+db.num=1
+db.url.0=jdbc:mysql://192.168.56.10:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
+db.user=root
+db.password=root
+```
+
+
+

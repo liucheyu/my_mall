@@ -17,6 +17,13 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+      #邏輯刪除，不刪檔案只設值讓程式去判斷
+      logic-delete-value: 1
+      logic-not-delete-value: 0
 
 server:
   port: 10000
+
+logging:
+  level:
+    com.liucheyu.mymall: debug
