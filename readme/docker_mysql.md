@@ -26,8 +26,21 @@ sudo docker run -p 3306:3306 --name mysql \
 -d mysql:5.7
 ```
 
+my ubuntu
+```
+
+sudo docker run -p 3306:3306 --name mysql \
+-v /home/liucheyu/db/mysql/log:/var/log/mysql \
+-v /home/liucheyu/db/mysql/data:/var/lib/mysql \
+-v /home/liucheyu/db/mysql/conf/conf.d:/etc/mysql/conf.d \
+-v /home/liucheyu/db/mysql/conf/mysql.conf.d:/etc/mysql/mysql.conf.d \
+-e MYSQL_ROOT_PASSWORD=root \
+-d mysql:5.7
+```
+
 修改配置
  - vi /mydata/mysql/conf/mysql_conf_d/my.cnf
+ - vi /home/liucheyu/db/mysql/conf/mysql.conf.d/my.cnf
 ```
 [client]
 default-character-set=utf8
