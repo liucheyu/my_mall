@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+  application:
+    name: mall-thirdparty
+
+
+server:
+  port: 18888
+
+firebase:
+  serviceAccountKey: ${FIREBASE_SERVICE_ACCOUNT_KEY}
+  databaseUrl: https:///my-mall-392707.firebaseio.com/

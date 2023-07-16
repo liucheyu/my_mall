@@ -9,15 +9,20 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.liucheyu.mymall</groupId>
-	<artifactId>thirdparty</artifactId>
+	<artifactId>mall-thirdparty</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>thirdparty</name>
+	<name>mall-thirdparty</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2021.0.8</spring-cloud.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>com.liucheyu.mymall</groupId>
+			<artifactId>mall-commons</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -36,6 +41,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.firebase</groupId>
+			<artifactId>firebase-admin</artifactId>
+			<version>9.2.0</version>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>
