@@ -12,5 +12,6 @@ server:
   port: 18888
 
 firebase:
-  serviceAccountKey: ${FIREBASE_SERVICE_ACCOUNT_KEY}
+#  serviceAccountKey: ${FIREBASE_SERVICE_ACCOUNT_KEY}
+  serviceAccountKey: D:\workspace\firebase\my-mall-392707-firebase-adminsdk-we9j7-44d8bd5c24.json
   databaseUrl: https:///my-mall-392707.firebaseio.com/

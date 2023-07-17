@@ -16,6 +16,8 @@ public class WebConfig {
 
     @Value("${firebase.serviceAccountKey}")
     String firebaseServiceAccountKey;
+    @Value("${firebase.databaseUrl}")
+    String firebaseDatabaseUrl;
 
     @Bean
     public FirebaseApp getFirebaseApp() throws IOException {
@@ -23,10 +25,11 @@ public class WebConfig {
 
         FirebaseOptions options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(refreshToken))
-                .setDatabaseUrl("https://<DATABASE_NAME>.firebaseio.com/")
+                .setDatabaseUrl("https://".concat(firebaseDatabaseUrl).concat("firebaseio.com/"))
                 .build();
 
         FirebaseApp firebaseApp = FirebaseApp.initializeApp(options);
+        return firebaseApp;
     }
 
     @Bean
