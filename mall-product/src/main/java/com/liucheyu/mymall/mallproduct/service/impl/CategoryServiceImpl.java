@@ -2,9 +2,7 @@ package com.liucheyu.mymall.mallproduct.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -53,9 +51,28 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         baseMapper.deleteBatchIds(asList);
     }
 
+    @Override
+    public Long[] getCategoryPath(Long catelogId) {
+        ArrayList<Long> path = new ArrayList<>();
+        List<Long> categoryParentPath = getCategoryParentPath(catelogId, path);
+        Collections.reverse(categoryParentPath);
+
+        return categoryParentPath.toArray(new Long[categoryParentPath.size()]);
+    }
+
+    private List<Long> getCategoryParentPath(Long catelogId, List<Long> path) {
+        path.add(catelogId);
+        CategoryEntity categoryEntity = baseMapper.selectById(catelogId);
+        if(categoryEntity.getParentCid() != 0) {
+            getCategoryParentPath(categoryEntity.getParentCid(), path);
+        }
+
+        return path;
+    }
+
     private List<CategoryEntity> getChildren(CategoryEntity current, List<CategoryEntity> all) {
         List<CategoryEntity> children = all.stream()
-                .filter(categoryEntity -> categoryEntity.getParentCid() == current.getCatId())
+                .filter(categoryEntity -> categoryEntity.getParentCid().equals(current.getCatId()))
                 .map(menu -> {
                     menu.setChildren(getChildren(menu, all));
                     return menu;
